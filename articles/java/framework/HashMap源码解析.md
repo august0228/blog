@@ -1,4 +1,5 @@
-### 1.简介
+
+### 简介
 
 * HashMap基于Hash表的Map接口实现，数据存储形式是Key,Value键值对
 * 允许空键和空值，Key不可以重复，Value可以重复
@@ -7,13 +8,13 @@
 * 可以自动扩容
 * 非线程安全，fail-fast快速失败，若有同步需求可以使用Collections.synchronizedMap 或者ConcurrentHashMap
 
-### 2.工作原理
+### 工作原理
 
 **工作原理概述**：通过hash算法，通过put和get存储和获取对象。
 
 通过hash的方法，通过put和get存储和获取对象。存储对象时，将K/V传给put方法时，它调用hashCode计算hash从而得到bucket位置，进一步存储，HashMap会根据当前bucket的占用情况自动调整容量(超过Load Facotr则resize为原来的2倍)。获取对象时，我们将K传给get，它调用hashCode计算hash从而得到bucket位置，并进一步调用equals()方法确定键值对。如果发生碰撞的时候，Hashmap通过链表将产生碰撞冲突的元素组织起来，如果一个bucket中碰撞冲突的元素超过某个限制(默认是8)，则使用红黑树来替换链表，从而提高速度。
 
-### 3. 主要参数
+### 主要参数
 
 容量(Capacity)和负载因子(Load factor)
 
@@ -22,7 +23,7 @@
 
 Capacity就是buckets的数目，Load factor就是buckets可以填充的最大比例。当bucket填充的数目（即hashmap中元素的个数）大于`capacity*load factor`时就需要调整buckets的数目为当前的2倍。
 
-### 4. hash函数实现方式
+### hash函数实现方式
 
 ```
 //	hash值的高位16位与低16进行XORs操作。
